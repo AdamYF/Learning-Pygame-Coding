@@ -21,29 +21,29 @@
 
 
 
-# 读取数据可以使用file.read(n)，其中n是读取的字符数目
+# # 读取数据可以使用file.read(n)，其中n是读取的字符数目
 # file = open("data.txt", "r")
 # char = file.read(20)
 # print(char)
 
-# 也可以不写n直接读取整个文件
+# # 也可以不写n直接读取整个文件
 # file = open("data.txt", "r")
 # all_data = file.read()
 # print(all_data)
 
-# 也可以使用file.readline(n)读取整行，n是行数，不填就是1行
+# # 也可以使用file.readline(n)读取整行，n是行数，不填就是1行
 # file = open("data.txt", "r")
 # one_line = file.readline()
 # print(one_line)
 
-# 还可用file.readlines()直接读取所有的行
-# 这个函数不是使用文本数据填充接受数据的变量，而是创建一个列表，每一行都是列表中的一项
-# 打印列表数据的话，并不是文件中的样子，而是带换行字符'\n'的样子
+# # 还可用file.readlines()直接读取所有的行
+# # 这个函数不是使用文本数据填充接受数据的变量，而是创建一个列表，每一行都是列表中的一项
+# # 打印列表数据的话，并不是文件中的样子，而是带换行字符'\n'的样子
 # file = open("data.txt", "r")
 # all_data = file.readlines()
 # print(all_data)
 
-# 对于file.readlines()方法，可以通过循环print来还原文本样式
+# # 对于file.readlines()方法，可以通过循环print来还原文本样式
 # file = open("data.txt", "r")
 # all_data = file.readlines()
 # print("Lines: ", len(all_data))
@@ -52,3 +52,30 @@
 
 
 
+# # 以二进制形式打开文件
+# file = open("data.txt", "rb")
+# all_data = file.read()
+# print(all_data)
+# file.close()
+
+# # 写入二进制文件
+# import struct
+# # 使用struct模块中的pack函数来将数据编码为二进制格式
+# # 使用unpack函数来解码
+# file = open("binary.dat", "wb")
+# for n in range(10):
+#     data = struct.pack("i", n)
+#     file.write(data)
+# file.close()
+
+# # 从二进制文件读取
+# import struct
+# file = open("binary.dat", "rb")
+# size = struct.calcsize("i")
+# bytes_read = file.read(size)
+# while bytes_read:
+#     value = struct.unpack("i", bytes_read)
+#     value = value[0]
+#     print(value, end = " ")
+#     bytes_read = file.read(size)
+# file.close()
